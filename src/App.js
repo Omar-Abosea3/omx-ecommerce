@@ -13,7 +13,6 @@ import ProductDetailes from './components/ProductDetailes/ProductDetailes';
 import Payment from './components/Payment/Payment';
 import MyOrders from './components/getOrders/MyOrders';
 import $ from 'jquery';
-import { Offline } from 'react-detect-offline';
 
 
 
@@ -97,12 +96,6 @@ export default function App() {
 
   return <>
       <RouterProvider router={router}/>
-      <Offline>
-         <div style={{zIndex:'99999999999'}} className='position-fixed bg-white bg-opacity-50 top-0 bottom-0 start-0 end-0 d-flex flex-wrap justify-content-center align-content-center'>
-          <img src={require('./assets/Network-error.png')} className='w-25'/>
-          <h2 style={{fontSize:'2.5rem'}} className='w-100 mt-2 text-center'>Your connection failed!!!!!!!</h2>
-         </div>
-      </Offline>
   </>
 }
 
