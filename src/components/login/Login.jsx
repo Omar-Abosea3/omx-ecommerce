@@ -61,7 +61,7 @@ export default function Login({ getUserData }) {
         <div className="w-100 mb-3 text-center">
           <img className='w-50' src={require('../../assets/omx-ecommerce-low-resolution-logo-color-on-transparent-background.png')} alt="Our Logo" />
         </div>
-        <form className='px-1 col-12 producInWideScreen' onSubmit={formik.handleSubmit}>
+        <form className='px-1 col-12' onSubmit={formik.handleSubmit}>
           <div style={{ display: 'none' }} className="errMsg mb-3 text-center alert alert-danger py-1">Email or Password is not correct.</div>
           <div className="w-100">
             <label className='mb-2' htmlFor="email">email</label>
