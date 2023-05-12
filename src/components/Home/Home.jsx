@@ -228,7 +228,7 @@ export default function Home() {
                 </Slider>
                 <h2><i className="bi bi-border-all"></i> All Products.</h2>
                 <div style={{ display: 'none', zIndex: '9999' }} className="sucMsg p-3 mt-0 alert alert-light position-fixed px-5 top-0"><i className="fa-solid fa-circle-check"></i> Product Added Successfully .</div>
-                {product.map((pro, index) => <div id='homeTop' key={index} className="col-6  position-relative producInWideScreen text-white col-sm-4 col-md-3 col-lg-2 ">
+                {product.map((pro, index) => <div id='homeTop' key={index} className="col-6  position-relative producInWideScreen text-white col-sm-4 col-md-3">
     
                     <div className="product position-relative overflow-hidden">
                         <Link to={`/product-detailes/${pro.id}`} className='text-decoration-none shadow-lg text-white'>

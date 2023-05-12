@@ -42,6 +42,9 @@
   background-image: linear-gradient(to bottom, #F6BA6F 1%, #f4cb99 10%, #E5F9DB);
 }
 
+.producInWideScreen {
+  width: 20%;
+}
 .producInWideScreen h2, .producInWideScreen h4 {
   font-size: 1rem !important;
 }
