@@ -1,0 +1,14 @@
+
+body {
+  background-image: url(./assets/gray-concrete-wall.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  
+
+}
+#root{
+  background-image: linear-gradient(to right , #f4cb99  ,#E5F9DB);
+}
+

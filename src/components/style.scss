@@ -1,0 +1,502 @@
+@mixin transition($dur,$prop){
+    transition: $prop , $dur;
+    -o-transition: $prop , $dur;
+    -moz-transition: $prop , $dur;
+    -ms-transition: $prop , $dur;
+    -webkit-transition: $prop , $dur;
+}
+
+
+    
+    .proBtn{
+        background: linear-gradient(to right , #e6a938 , #EB6541 , #e6a938);
+        color: #F7E1AE;
+        border: 0px;
+        padding: 5px;
+        font-size: 1.2rem;
+        @include transition(0.3s , all );
+        &:hover{
+            background: linear-gradient(to right ,  #ba401e , #8d651b , #be3f1c);
+            color: white;
+        }
+  
+    }
+    .proBtn5{
+        background: linear-gradient(to right , #e6a938 , #EB6541 , #e6a938);
+        color: #F7E1AE;
+        border: 0px;
+        padding: 5px;
+        font-size: 1.2rem;
+        margin-bottom: -10px;
+        @include transition(0s , all );
+        &:hover{
+            background: linear-gradient(to right ,  #EB6541 , #e6a938 , #EB6541);
+        }
+
+
+    }
+   
+    .producInWideScreen2{
+        h3,h4{
+            font-size: 1.4rem;
+        }
+        h6{
+            font-size: 0.7rem; 
+        }
+        .allOrdDetailes{
+            background-image: linear-gradient(to bottom , #F6BA6F 1% ,#f4cb99 10% ,#E5F9DB );
+        }
+    }
+
+    .producInWideScreen{
+        h2,h4{
+            font-size: 1rem !important;
+        }
+        h6{
+            font-size: 0.85rem !important; 
+        }
+        button{
+            font-size:1rem !important;
+        }
+    }
+
+@media screen and (max-width:500px) {
+    .producInWideScreen{
+        h2,h4{
+            font-size: 0.7rem !important;
+        }
+        h6{
+            font-size: 0.75rem !important; 
+        }
+        button{
+            font-size: 0.7rem !important;
+        }
+    }
+   .producInWideScreen2{
+        h3,h4{
+            font-size:0.7rem !important;
+        }
+    }
+
+}
+@media screen and (max-width:300px) {
+    .producInWideScreen{
+        h2,h4{
+            font-size: 0.5rem !important;
+        }
+        h6{
+            font-size: 0.65rem !important; 
+        }
+        button{
+            font-size: 0.5rem !important;
+        }
+    }
+}
+
+.MyIcons{
+    width: 30px;
+    height: 30px;
+    border: 2px solid #276259;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #276259;
+    @include transition(0.3s , all );
+    &:hover{
+        background-color: #276259;
+        color: #ccb889;
+    }
+}
+.Sliders{
+    cursor: pointer;
+}
+.signUpForm{
+    background: linear-gradient(to left , #F6BA6F 1% ,#f4cb99 10% ,#E5F9DB );
+    button{
+        background-color: #398378;
+        color: #efdbae;
+        &:hover{
+        background-color: #c3b38d;
+        color: #398378;
+        }
+    }
+}
+#numOfItems{
+    color: #398378;
+}
+.detBtn{
+    background-color:  #f4cb99;
+    color: #398378;
+    outline: 0px;
+    border: 0px;
+    font-size: 0.8rem;
+    @include transition(0.5s , all );
+    &:hover{
+        background-color: #b74829;
+        color: white;
+    }
+}
+.cartRemoveBtn{
+    color: #398378;
+    background-color: #F7E1AE;
+    @include transition(0.5s , all );
+    &:hover{
+        color: #398378;
+        background-color: #d4b161;
+    }
+}
+.product{
+    overflow: hidden;
+    background-color: white;
+    h3,h4,h6,h2{
+        color: black;
+    }
+    .ProTitle {
+        color: #30ac9a;
+        font-weight: bolder;
+    }
+    .rating{
+        background-color: #ccb889;
+        width: 30px;
+        height: 30px;
+    }
+    .sale{
+        background-color:  #b74829;
+        color:  white;
+        top: 0%;
+        left: 2%;
+        padding: 5px;
+        
+    }
+    .proImg{
+        @include transition(0.3s , all );
+    }
+    &:hover .proImg{
+        transform: scale(1.1,1.1);
+    }
+}
+
+.proBtn2{
+    background: linear-gradient(to right , #e6a938 , #EB6541 , #e6a938);
+    color: #F7E1AE;
+    border: 0px;
+    padding: 5px;
+    font-size: 1.2rem;
+    @include transition(0.3s , all );
+    &:hover{
+        background: linear-gradient(to right ,  #ba401e , #8d651b , #be3f1c);
+        color: white;
+    }
+}
+.clearBtn{
+    width: fit-content;
+}
+
+.totalPrice{
+    width: fit-content;
+    background-color: #FFF8D6;
+    h3{
+        color:#617A55;
+    }
+    span{
+        color: #b6913d;
+    }
+}
+.ProTitle {
+    color: #30ac9a;
+    font-weight: bolder;
+}
+.BrandTitle{ 
+    font-weight: bolder; 
+}
+.brandBox{
+    background-color:  #f4cb99;
+    color: #398378;
+    @include transition( 0.3s, all);
+    &:hover{
+        transform: scale(1.1,1.1);
+    }
+}
+
+
+.proBtn3{
+    background-color:white;
+    color: #F0976C;
+    border: 0px;
+    padding: 5px;
+    font-size: 1.2rem;
+    @include transition(0.3s , all );
+    &:hover{
+        color: #EB6541;
+    }
+}
+nav ul li a{
+    color:black !important;
+}
+.slider-photo{
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    .SliderLayer{
+        color: white;
+        h2{
+            margin-bottom:30px;
+            width: 100%;
+            font: {
+                size: 3.5rem;
+                weight: bold;
+                style:italic;
+            }
+        }
+        p{
+            width: 100%;
+            font: {
+                size: 1.5em;
+                weight: bold;
+                style:italic;
+            } 
+        }
+        button{
+            background: linear-gradient(to right, #ba401e, #c38e2b, #be3f1c);
+                color: #efe1bf;
+                border: 0px;
+                padding: 5px;
+                font-size: 1.2rem;
+                // width: fit-content;
+                &:hover{
+                    background: linear-gradient(to left, #c38e2b, #be3f1c, #ba401e);
+                }
+        }
+    }
+    img{
+        width:50px;
+    }
+}
+
+@for $i from 1 through 7 {
+    .slider#{$i}{
+        background-image: url(../assets/#{$i}.jpg);
+        border-radius: 10px;
+    }
+}
+
+
+nav{
+    background-image: linear-gradient(to left ,#EB6440   ,#ff9a80 );
+}
+
+.myOrder{
+    // background-image: linear-gradient(to bottom , #F6BA6F 1% ,#f4cb99 70% ,#E5F9DB );
+    background-color: white;
+}
+
+
+.productFontSize{
+        h3,h4,h2{
+            font-size:1.5rem !important;
+        }
+        h6{
+            font-size: 0.8rem !important;
+        }
+
+     
+}
+.productFontSize2{
+    h3,h4,h2{
+        font-size:1.5rem !important;
+    }
+    h6{
+        font-size: 0.8rem !important;
+    }
+
+ 
+}
+.sucMsg{
+    width: fit-content;
+}
+
+.login ,.notLogin{
+    width: fit-content;
+}
+
+
+@media screen and (max-width:550px) {
+    .productFontSize{
+        h3,h4,h2{
+            font-size: 0.8rem !important;
+        }
+        h6{
+            font-size: 0.8rem !important;
+        }
+        button{
+            font-size: 0.5rem;
+        }
+        .proBtn3{
+            font-size: 0.9rem;
+        }
+    }
+    .productFontSize2{
+        h3,h4,h2{
+            font-size:1.3rem !important;
+        }
+        h6{
+            font-size: 1rem !important;
+        }
+    
+     
+    }
+    .loadingScreen{
+        i{
+            font-size: 5rem;
+        }
+    }
+    .BrandTitle{
+        font-size: 1rem;
+    }
+    .slider-photo{
+        .SliderLayer{
+            color: white;
+            h2{
+                margin-bottom:30px;
+                width: 100%;
+                font: {
+                    size: 3rem;
+                    weight: bold;
+                    style:italic;
+                }
+            }
+            p{
+                width: 100%;
+                font: {
+                    size: 1.2em;
+                    weight: bold;
+                    style:italic;
+                } 
+            }
+            button{
+                font-size: 0.9rem;
+                padding:10px 15px !important;
+            }
+        }
+    }
+
+}
+@media screen and (max-width:320px) {
+    .productFontSize{
+        h3,h4,h2{
+            font-size: 0.7rem !important;
+            
+        }
+        h6{
+            font-size: 0.8rem !important;
+        }
+        button{
+            font-size: 0.5rem;
+        }
+        .proBtn3{
+            font-size: 0.9rem;
+        }
+        .BrandTitle{
+            font-size: 0.7rem;
+        }
+    }
+
+    .productFontSize2{
+        h3,h4,h2{
+            font-size:1rem !important;
+        }
+        h6{
+            font-size: 1rem !important;
+        }
+    
+     
+    }
+    .loadingScreen{
+        i{
+            font-size: 3.5rem;
+        }
+    }
+    .slider-photo{
+        .SliderLayer{
+            color: white;
+            h2{
+                font: {
+                    size: 1.5rem;
+                }
+            }
+            p{
+                font: {
+                    size: 1em;
+                } 
+            }
+        }
+    }
+}
+
+
+
+footer{
+    background-image: linear-gradient(to right,#451406 ,  #852409);
+    .footerUl{
+        list-style: none;
+        width: fit-content;
+        margin: auto;
+        h3{
+            color: #398378;
+        }
+        li,li a{
+            cursor: pointer;
+            color: #c3b38d;
+            font-size: 1rem;
+        }
+    }
+    .footerInfo{
+        button{
+            background-color: #398378;
+            color: #efdbae;
+            &:hover{
+            background-color: #c3b38d;
+            color: #398378;
+            }
+        }
+        h3{
+            color:#ec9c86 ;
+        }
+    }
+}
+
+.MyIcons2{
+    width: 55px;
+    height: 55px;
+    border: 2px solid #276259;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #276259;
+    @include transition(0.3s , all );
+    &:hover{
+        background-color: #276259;
+        color: #ccb889;
+    }
+}
+::-webkit-scrollbar{
+    width: 20px;
+}
+::-webkit-scrollbar-track{
+    background: #c3b38d;
+}
+::-webkit-scrollbar-thumb{
+    background: #ba401e;
+}
