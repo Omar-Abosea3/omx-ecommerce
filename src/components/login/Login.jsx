@@ -57,11 +57,11 @@ export default function Login({ getUserData }) {
     </Helmet>
     <div className="container py-5 my-5 d-flex justify-content-center align-items-center">
     <div style={{display:'none',zIndex:'999999'}} className="notLogin mt-0 p-3 alert bg-dark text-white px-5 position-fixed top-0"><i className="fa-solid fa-close"></i> you Must Logged in first !!</div>
-      <div className="signUpForm bg-light w-75 mt-5 p-5 shadow-lg">
+      <div className="signUpForm bg-light w-75 producInWideScreen mt-5 p-5 shadow-lg">
         <div className="w-100 mb-3 text-center">
           <img className='w-50' src={require('../../assets/omx-ecommerce-low-resolution-logo-color-on-transparent-background.png')} alt="Our Logo" />
         </div>
-        <form className='px-1 col-12' onSubmit={formik.handleSubmit}>
+        <form className='px-1 col-12 ' onSubmit={formik.handleSubmit}>
           <div style={{ display: 'none' }} className="errMsg mb-3 text-center alert alert-danger py-1">Email or Password is not correct.</div>
           <div className="w-100">
             <label className='mb-2' htmlFor="email">email</label>
