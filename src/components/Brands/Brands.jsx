@@ -39,7 +39,7 @@ export default function Brands() {
             <p>You can see our brands and each brand include products in it.</p>
           </div>
         </div>
-        {Brand.map((brand, index) => <div key={index} className="col-6 col-sm-4 text-center col-md-3 col-lg-2">
+        {Brand.map((brand, index) => <div key={index} className="col-6 col-sm-4 producInWideScreen text-center col-md-3">
           <Link className='text-decoration-none px-2 text-primary' to={`/brands/${brand._id}`}>
             <div className="brandBox shadow-lg">
               <img className='w-100' src={brand.image} alt={brand.name} />
