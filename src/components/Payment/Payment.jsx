@@ -83,7 +83,6 @@ export default function Payment() {
 
     } catch (error) {
       console.log(error);
-      console.log(cartId);
       $('.infoBtn2').html('Order now  <i class="bi bi-bag-check"></i>');
       $('.errMsg').fadeIn(500, function () {
         setTimeout(() => {

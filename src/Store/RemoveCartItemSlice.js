@@ -3,6 +3,7 @@ import axios from 'axios';
 import $ from 'jquery';
 import emptycart from '../assets/your-cart-is-empty.png';
 import { useDispatch } from 'react-redux';
+import { getCartItemsData } from './getLoggedCartItemsSlice';
 
 
 export const removeCartItems=createAsyncThunk('removecartitem/removeCartItems' , async function(id){
@@ -15,6 +16,7 @@ export const removeCartItems=createAsyncThunk('removecartitem/removeCartItems' ,
         });
         if (data.status === "success") {
           $(`#removeBtn${id}`).html(`Remove Product <i class="bi bi-cart-dash-fill"></i>`);
+
           $('.RemoveMsg').slideDown(500,function(){
             setTimeout(() => {
               $('.RemoveMsg').slideUp(500);
@@ -42,8 +44,6 @@ const removeCartItemsSlice = createSlice({
             state.CartProducts = action.payload.data.products;
             state.cartItems = action.payload.numOfCartItems;
             state.TotalCartPrice = action.payload.data.totalCartPrice;
-            console.log(action.payload.data.totalCartPrice);
-            console.log(action.payload.numOfCartItems);
             console.log(action.payload.data.products);
             
             if(state.CartProducts.length == 0){

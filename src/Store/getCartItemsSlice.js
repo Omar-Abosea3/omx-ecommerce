@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import React from 'react';
 import $ from 'jquery';
 
 export const getCartItems=createAsyncThunk('getitem/getCartItems' , async function(id){
@@ -42,7 +41,6 @@ const getCartSlice = createSlice({
         builder.addCase(getCartItems.fulfilled , function(state , action){
             state.CartProducts = action.payload;
             state.cartItems = action.payload.numOfCartItems;
-            console.log(action.payload.numOfCartItems);
             console.log(action.payload);
         })
     }

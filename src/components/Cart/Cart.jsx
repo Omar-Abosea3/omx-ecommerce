@@ -28,7 +28,8 @@ export default function Cart() {
 
   const cartId = useSelector(function(store){
     return store.getCartItemSlice.cartId;
-  }) 
+  })
+ 
   async function updateCounterInCartItem (id , count){
     $(`#loadingIcon${id}`).fadeIn(300);
     try {
@@ -55,7 +56,7 @@ export default function Cart() {
       }else{
         $('.quantityNotEnough').fadeOut(500);
         if(await updateCounterInCartItem(id , counter)==true){
-          console.log('updated');
+          dispatch(getCartItemsData());
         }
       }
 
@@ -63,13 +64,12 @@ export default function Cart() {
   async function checkQuantity2(id, counter, product2) {
     $(`#loadingIcon${id}`).fadeIn(300);
     if (product2.count == product2.product.quantity && await updateCounterInCartItem(id, counter) == true) {
-      console.log('updated');
       $('.quantityNotEnough').fadeOut(500);
     } else if (product2.count == 1) {
       $(`#loadingIcon${id}`).fadeOut(300);
       dispatch(removeCartItems(id))
     } else if ( await updateCounterInCartItem(id, counter) == true) {
-      console.log('updated');
+      dispatch(getCartItemsData());
     }
 
   }
@@ -85,7 +85,6 @@ export default function Cart() {
         );
 
         if (data.message === "success") {
-          console.log('hello');
           navigate('/home');
           $('.emptyCart').slideDown(500 , function(){
             setTimeout(() => {
@@ -100,7 +99,7 @@ export default function Cart() {
   
   async function checkCartItems(id){
     if(dispatch(removeCartItems(id)) == true ){
-      console.log('removed');
+      dispatch(getCartItemsData());
     }
   }
 
@@ -111,7 +110,6 @@ export default function Cart() {
       dispatch(getCartItemsData());
       localStorage.setItem('cartId',cartId);
     }else if(myNumCartItems != null && myCartItems == 0){
-      console.log('empty');
       $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100'  src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100');
     }else{
       dispatch(getCartItemsData());

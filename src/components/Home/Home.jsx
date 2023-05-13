@@ -51,7 +51,7 @@ export default function Home() {
       };
 
     const [product, setProduct] = useState(null);
-    const [homeTop, sethomeTop] = useState(0);
+
 
     const getCartSlice = useSelector(function(store){
         return store.getCartSlice;
@@ -76,7 +76,6 @@ export default function Home() {
         try {
             let {data} = await axios.get('https://route-ecommerce-app.vercel.app/api/v1/products');
             setProduct(data.data);
-            sethomeTop($('#homeTop').offset().top);
         } catch (error) {
             console.log(error);
         }
@@ -99,7 +98,7 @@ export default function Home() {
                 <div style={{ zIndex: '99' }} className='position-absolute top-0 start-0 end-0 bottom-0 SliderLayer d-flex flex-wrap align-content-center text-light bg-dark bg-opacity-50 p-5'>
                     <h2>Hello In OMX website for e-commerce.</h2>
                     <p>In our website you can find any product you need and all brands you love an we will keep your happiness always.</p>
-                    <button onClick={function () { $('html,body').animate({ scrollTop: homeTop }, 2000) }} className='btn align-self-end btn-dark rounded-0 py-4 fs-3 px-5'>Shop Now </button>
+                    <button onClick={function () { $('html,body').animate({ scrollTop: $('#homeTop').offset().top }, 2000) }} className='btn align-self-end btn-dark rounded-0 py-4 fs-3 px-5'>Shop Now </button>
                 </div>
                 <Slider className='w-100 mb-3 overflow-hidden' {...settings}>
                     <div className='slider-photo slider1'>
