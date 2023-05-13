@@ -28,9 +28,7 @@ export default function Cart() {
 
   const cartId = useSelector(function(store){
     return store.getCartItemSlice.cartId;
-  })
-  console.log(cartId);
- 
+  }) 
   async function updateCounterInCartItem (id , count){
     $(`#loadingIcon${id}`).fadeIn(300);
     try {

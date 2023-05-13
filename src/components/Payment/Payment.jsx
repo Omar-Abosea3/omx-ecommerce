@@ -73,7 +73,6 @@ export default function Payment() {
           "token": localStorage.getItem('tkn1'),
         },
       });
-      console.log(data);
       if (data.status == 'success') {
         navigate('/allorders');
         console.log(data);

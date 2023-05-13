@@ -18,7 +18,6 @@ export const getCartItemsData=createAsyncThunk('getcartitem/getCartItemsData' , 
         return true , data ;
        }
       } catch (error) {
-        console.log(error);
         return false ;
     }
 })
