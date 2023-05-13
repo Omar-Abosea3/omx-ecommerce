@@ -250,42 +250,42 @@ nav ul li a{
     border-radius: 10px;
     padding: 20px;
     position: relative;
-    .SliderLayer{
-        color: white;
-        h2{
-            margin-bottom:30px;
-            width: 100%;
-            font: {
-                size: 3.5rem;
-                weight: bold;
-                style:italic;
-            }
-        }
-        p{
-            width: 100%;
-            font: {
-                size: 1.5em;
-                weight: bold;
-                style:italic;
-            } 
-        }
-        button{
-            background: linear-gradient(to right, #ba401e, #c38e2b, #be3f1c);
-                color: #efe1bf;
-                border: 0px;
-                padding: 5px;
-                font-size: 1.2rem;
-                // width: fit-content;
-                &:hover{
-                    background: linear-gradient(to left, #c38e2b, #be3f1c, #ba401e);
-                }
-        }
-    }
     img{
         width:50px;
     }
 }
 
+.SliderLayer{
+    color: white;
+    h2{
+        margin-bottom:30px;
+        width: 100%;
+        font: {
+            size: 3.5rem;
+            weight: bold;
+            style:italic;
+        }
+    }
+    p{
+        width: 100%;
+        font: {
+            size: 1.5em;
+            weight: bold;
+            style:italic;
+        } 
+    }
+    button{
+        background: linear-gradient(to right, #ba401e, #c38e2b, #be3f1c);
+            color: #efe1bf;
+            border: 0px;
+            padding: 5px;
+            font-size: 1.2rem;
+            // width: fit-content;
+            &:hover{
+                background: linear-gradient(to left, #c38e2b, #be3f1c, #ba401e);
+            }
+    }
+}
 @for $i from 1 through 7 {
     .slider#{$i}{
         background-image: url(../assets/#{$i}.jpg);
@@ -366,30 +366,28 @@ nav{
     .BrandTitle{
         font-size: 1rem;
     }
-    .slider-photo{
-        .SliderLayer{
-            color: white;
-            h2{
-                margin-bottom:30px;
-                width: 100%;
-                font: {
-                    size: 3rem;
-                    weight: bold;
-                    style:italic;
-                }
+    .SliderLayer{
+        color: white;
+        h2{
+            margin-bottom:30px;
+            width: 100%;
+            font: {
+                size: 3rem;
+                weight: bold;
+                style:italic;
             }
-            p{
-                width: 100%;
-                font: {
-                    size: 1.2em;
-                    weight: bold;
-                    style:italic;
-                } 
-            }
-            button{
-                font-size: 0.9rem;
-                padding:10px 15px !important;
-            }
+        }
+        p{
+            width: 100%;
+            font: {
+                size: 1.2em;
+                weight: bold;
+                style:italic;
+            } 
+        }
+        button{
+            font-size: 0.9rem;
+            padding:10px 15px !important;
         }
     }
 
@@ -429,19 +427,17 @@ nav{
             font-size: 3.5rem;
         }
     }
-    .slider-photo{
-        .SliderLayer{
-            color: white;
-            h2{
-                font: {
-                    size: 1.5rem;
-                }
+    .SliderLayer{
+        color: white;
+        h2{
+            font: {
+                size: 1.5rem;
             }
-            p{
-                font: {
-                    size: 1em;
-                } 
-            }
+        }
+        p{
+            font: {
+                size: 1em;
+            } 
         }
     }
 }

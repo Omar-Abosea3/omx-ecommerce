@@ -275,34 +275,35 @@ nav ul li a {
   padding: 20px;
   position: relative;
 }
-.slider-photo .SliderLayer {
+.slider-photo img {
+  width: 50px;
+}
+
+.SliderLayer {
   color: white;
 }
-.slider-photo .SliderLayer h2 {
+.SliderLayer h2 {
   margin-bottom: 30px;
   width: 100%;
   font-size: 3.5rem;
   font-weight: bold;
   font-style: italic;
 }
-.slider-photo .SliderLayer p {
+.SliderLayer p {
   width: 100%;
   font-size: 1.5em;
   font-weight: bold;
   font-style: italic;
 }
-.slider-photo .SliderLayer button {
+.SliderLayer button {
   background: linear-gradient(to right, #ba401e, #c38e2b, #be3f1c);
   color: #efe1bf;
   border: 0px;
   padding: 5px;
   font-size: 1.2rem;
 }
-.slider-photo .SliderLayer button:hover {
+.SliderLayer button:hover {
   background: linear-gradient(to left, #c38e2b, #be3f1c, #ba401e);
-}
-.slider-photo img {
-  width: 50px;
 }
 
 .slider1 {
@@ -397,23 +398,23 @@ nav {
   .BrandTitle {
     font-size: 1rem;
   }
-  .slider-photo .SliderLayer {
+  .SliderLayer {
     color: white;
   }
-  .slider-photo .SliderLayer h2 {
+  .SliderLayer h2 {
     margin-bottom: 30px;
     width: 100%;
     font-size: 3rem;
     font-weight: bold;
     font-style: italic;
   }
-  .slider-photo .SliderLayer p {
+  .SliderLayer p {
     width: 100%;
     font-size: 1.2em;
     font-weight: bold;
     font-style: italic;
   }
-  .slider-photo .SliderLayer button {
+  .SliderLayer button {
     font-size: 0.9rem;
     padding: 10px 15px !important;
   }
@@ -443,13 +444,13 @@ nav {
   .loadingScreen i {
     font-size: 3.5rem;
   }
-  .slider-photo .SliderLayer {
+  .SliderLayer {
     color: white;
   }
-  .slider-photo .SliderLayer h2 {
+  .SliderLayer h2 {
     font-size: 1.5rem;
   }
-  .slider-photo .SliderLayer p {
+  .SliderLayer p {
     font-size: 1em;
   }
 }
