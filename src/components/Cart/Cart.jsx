@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useLayoutEffect, useState} from 'react';
 import LodingScrean from '../loadingScreen/LodingScrean';
 import emptycart from '../../assets/your-cart-is-empty.png';
 
@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 export default function Cart() {
-  const [idOfCart, setidOfCart] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const myCartItems = useSelector(function(store){
@@ -103,17 +102,8 @@ export default function Cart() {
     }
   }
 
-  useEffect(function(){
-    if(myNumCartItems == null){
-      $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img  class='w-100' src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100');
-    }else if(myNumCartItems != null && myNumCartItems != 0){
-      dispatch(getCartItemsData());
-      localStorage.setItem('cartId',cartId);
-    }else if(myNumCartItems != null && myCartItems == 0){
-      $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100'  src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100');
-    }else{
-      dispatch(getCartItemsData());
-    }
+  useLayoutEffect(function(){
+    dispatch(getCartItemsData());  
 
     if (cartId != 0) {
       localStorage.setItem('cartId',cartId);

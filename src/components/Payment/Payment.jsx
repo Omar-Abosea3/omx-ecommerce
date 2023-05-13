@@ -132,11 +132,11 @@ export default function Payment() {
     </Helmet>
 
     {cartId != 0 ? <div className="vh-100 w-100 d-flex justify-content-center align-items-center">
-      <div className="signUpForm bg-light w-75 mt-5 p-5 shadow-lg">
+      <div className="signUpForm producInWideScreen bg-light w-75 mt-5 p-5 shadow-lg">
         <div className="w-100 mb-3 text-center">
           <img className='w-50' src={require('../../assets/omx-ecommerce-low-resolution-logo-color-on-transparent-background.png')} alt="Our Logo" />
         </div>
-        <form className='px-1 col-12 producInWideScreen'>
+        <form className='px-1 col-12 '>
           <div style={{ display: 'none' }} className="errMsg mb-3 text-center alert alert-danger py-1">Plese Check your order !</div>
 
 

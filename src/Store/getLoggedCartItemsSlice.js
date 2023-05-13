@@ -39,6 +39,10 @@ const getCartItemSlice = createSlice({
                 state.cartItems = 0;
                 state.TotalCartPrice = 0;
                 $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100' src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100');
+            }else if( action.payload.data.products.length==0){
+                $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100' src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100');
+                state.cartItems = 0;
+                state.TotalCartPrice = 0;
             }else{
                 state.CartProducts = action.payload.data.products;
                 state.cartItems = action.payload.numOfCartItems;
