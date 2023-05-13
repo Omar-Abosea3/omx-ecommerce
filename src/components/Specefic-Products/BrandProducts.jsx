@@ -55,7 +55,7 @@ export default function BrandProducts() {
             <title>BrandProducts</title>
         </Helmet>
         {SpecBrand == null ? <LodingScrean /> : SpecBrand.length != 0 ? <div className="container-fluid d-flex justify-content-center py-5">
-            <div style={{ display: 'none', zIndex: '9999' }} className="sucMsg p-3 mt-0  alert alert-success position-fixed w-25 top-0"><i className="fa-solid fa-circle-check"></i> Product Added Successfully .</div>
+        <div style={{ display: 'none', zIndex: '9999' }} className="sucMsg p-3 mt-0 alert alert-light position-fixed px-5 top-0"><i className="fa-solid fa-circle-check"></i> Product Added Successfully .</div>
             <div className="row py-5 gy-4">
                 {console.log(SpecBrand)}
                 {SpecBrand.map((pro, index) => <div key={index} className="col-6 position-relative producInWideScreen text-white col-sm-4 col-md-3">
