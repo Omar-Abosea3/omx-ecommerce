@@ -74,7 +74,7 @@ export default function Home() {
 
     async function getProduct(){
         try {
-            let {data} = await axios.get('https://route-ecommerce-app.vercel.app/api/v1/products');
+            let {data} = await axios.get('https://ecommerce.routemisr.com/api/v1/products');
             setProduct(data.data);
         } catch (error) {
             console.log(error);

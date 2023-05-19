@@ -44,7 +44,7 @@ export default function ProductDetailes() {
     const [Specproduct, setSpecProduct] = useState(null);
     async function getSpecProduct(){
         try {
-            let {data} = await axios.get(`https://route-ecommerce-app.vercel.app/api/v1/products/${id}`);
+            let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
             setSpecProduct(data.data);
             console.log(Specproduct);
         } catch (error) {

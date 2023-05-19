@@ -4,7 +4,7 @@ import $ from 'jquery';
 
 export const getCartItems=createAsyncThunk('getitem/getCartItems' , async function(id){
     try {
-        const { data } = await axios.post("https://route-ecommerce-app.vercel.app/api/v1/cart",
+        const { data } = await axios.post("https://ecommerce.routemisr.com/api/v1/cart",
           {
             productId: id,
           },

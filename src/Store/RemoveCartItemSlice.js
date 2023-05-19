@@ -9,7 +9,7 @@ import { getCartItemsData } from './getLoggedCartItemsSlice';
 export const removeCartItems=createAsyncThunk('removecartitem/removeCartItems' , async function(id){
     try {
         $(`#removeBtn${id}`).html(`<i  class='fa fa-spinner fa-spin'></i>`);
-        const {data} = await axios.delete(`https://route-ecommerce-app.vercel.app/api/v1/cart/${id}`,{
+        const {data} = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,{
           headers: {
             token: localStorage.getItem('tkn1'),
           }

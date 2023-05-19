@@ -13,7 +13,7 @@ export default function MyOrders({curUser}) {
 
     async function getMyOrders(){
         try {
-            const { data } = await axios.get(`https://route-ecommerce-app.vercel.app/api/v1/orders/user/${curUser.id}`);
+            const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${curUser.id}`);
            
             setMyOrders(data);
             console.log(data);

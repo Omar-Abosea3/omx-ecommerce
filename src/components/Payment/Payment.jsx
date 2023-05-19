@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import $ from 'jquery';
 import axios from 'axios';
@@ -9,9 +9,9 @@ import { Helmet } from 'react-helmet';
 
 
 export default function Payment() {
-  const cartId = useSelector(function (store) {
-    return store.getCartItemSlice.cartId;
-  })
+  // const cartId = useSelector(function (store) {
+  //   return store.getCartItemSlice.cartId;
+  // })
   const myNumCartItems = useSelector(function (store) {
     return store.getCartItemSlice.cartItems;
   })
@@ -29,30 +29,30 @@ export default function Payment() {
     }
   }
 
-  // const cartId = localStorage.getItem('cartId');
-  // console.log(cartId);
+  const cartId = localStorage.getItem('cartId');
+
 
   async function puyProducts(info) {
     $('.infoBtn').html(`<i class='fa fa-spinner fa-spin text-white'></i>`);
     try {
-      const { data } = await axios.post(`https://route-ecommerce-app.vercel.app/api/v1/orders/checkout-session/${cartId}`, { info }, {
+      const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}`, { info }, {
         headers: {
           "token": localStorage.getItem('tkn1'),
         },
         params: {
-          "url": 'https://omar-abosea3.github.io/omx-e-commerce/#',
+          "url": 'http://localhost:3000/omx-e-commerce#',
         }
       });
       console.log(data);
       if (data.status == 'success') {
-        window.open(data.session.url  , '_self');
+        // dispatch(getCartItemsData());
+        window.open(data.session.url);
 
         console.log(data);
         setTimeout(() => {
           $('.infoBtn').html('Confirm Payment <i class="bi bi-credit-card-fill"></i>');
         }, 2000);
       }
-
     } catch (error) {
       console.log(error);
       console.log(cartId);
@@ -68,7 +68,7 @@ export default function Payment() {
   async function puyProductsCash(info) {
     $('.infoBtn2').html(`<i class='fa fa-spinner fa-spin text-white'></i>`);
     try {
-      const { data } = await axios.post(`https://route-ecommerce-app.vercel.app/api/v1/orders/${cartId}`, { info }, {
+      const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/${cartId}`, { info }, {
         headers: {
           "token": localStorage.getItem('tkn1'),
         },

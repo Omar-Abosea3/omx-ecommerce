@@ -13,7 +13,7 @@ export default function Brands() {
   const [Brand, setBrand] = useState(null);
   async function getBrand() {
     try {
-      let { data } = await axios.get('https://route-ecommerce-app.vercel.app/api/v1/brands');
+      let { data } = await axios.get('https://ecommerce.routemisr.com/api/v1/brands');
       setBrand(data.data);
       console.log(Brand);
     } catch (error) {

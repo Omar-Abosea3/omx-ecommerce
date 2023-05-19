@@ -32,7 +32,7 @@ export default function Cart() {
   async function updateCounterInCartItem (id , count){
     $(`#loadingIcon${id}`).fadeIn(300);
     try {
-        const {data} = await axios.put(`https://route-ecommerce-app.vercel.app/api/v1/cart/${id}`,{
+        const {data} = await axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,{
           "count": count,
       },{
         headers: { token: localStorage.getItem("tkn1") },
@@ -77,7 +77,7 @@ export default function Cart() {
     async function clearCart(){
       $('#clearBtn').html(`<i  class='fa fa-spinner fa-spin'></i>`);
       try {
-        const { data } = await axios.delete("https://route-ecommerce-app.vercel.app/api/v1/cart",
+        const { data } = await axios.delete("https://ecommerce.routemisr.com/api/v1/cart",
           {
             headers: { token: localStorage.getItem("tkn1") },
           }
@@ -104,6 +104,9 @@ export default function Cart() {
 
   useLayoutEffect(function(){
     dispatch(getCartItemsData());  
+    if(myCartItems != null && myCartItems.length == 0){
+      $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100' src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100');
+    }
 
     if (cartId != 0) {
       localStorage.setItem('cartId',cartId);
