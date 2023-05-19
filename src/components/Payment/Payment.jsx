@@ -40,7 +40,7 @@ export default function Payment() {
           "token": localStorage.getItem('tkn1'),
         },
         params: {
-          "url": 'http://localhost:3000/omx-e-commerce#',
+          "url": 'https://omar-abosea3.github.io/omx-e-commerce#',
         }
       });
       console.log(data);
