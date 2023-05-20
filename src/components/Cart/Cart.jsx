@@ -25,9 +25,7 @@ export default function Cart() {
     return store.getCartItemSlice.TotalCartPrice;
   })
 
-  const cartId = useSelector(function(store){
-    return store.getCartItemSlice.cartId;
-  })
+
  
   async function updateCounterInCartItem (id , count){
     $(`#loadingIcon${id}`).fadeIn(300);
@@ -106,10 +104,6 @@ export default function Cart() {
     dispatch(getCartItemsData());  
     if(myCartItems != null && myCartItems.length == 0){
       $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100' src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100');
-    }
-
-    if (cartId != 0) {
-      localStorage.setItem('cartId',cartId);
     }
 },[myCartItems,myNumCartItems,myTotalCartPrice])
 
