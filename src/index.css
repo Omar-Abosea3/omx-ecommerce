@@ -9,6 +9,7 @@ body {
 
 }
 #root{
-  background-image: linear-gradient(to right , #f4cb99  ,#E5F9DB);
+  /* background-image: linear-gradient(to right , #e8f9cc  ,#c2d4ba); */
+  background-color: aliceblue;
 }
 

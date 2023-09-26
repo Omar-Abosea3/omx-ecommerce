@@ -9,28 +9,28 @@
 
     
     .proBtn{
-        background: linear-gradient(to right , #e6a938 , #EB6541 , #e6a938);
-        color: #F7E1AE;
+        background: linear-gradient(to right , #e8f9cc  ,#a5ea87);
+        color: white;
         border: 0px;
         padding: 5px;
         font-size: 1.2rem;
         @include transition(0.3s , all );
         &:hover{
-            background: linear-gradient(to right ,  #ba401e , #8d651b , #be3f1c);
+            background: linear-gradient(to right ,#a5ea87 ,  #e8f9cc);
             color: white;
         }
   
     }
     .proBtn5{
-        background: linear-gradient(to right , #e6a938 , #EB6541 , #e6a938);
-        color: #F7E1AE;
+        background: linear-gradient(to right ,#e8f9cc  ,#a5ea87);
+        color: white;
         border: 0px;
         padding: 5px;
         font-size: 1.2rem;
         margin-bottom: -10px;
         @include transition(0s , all );
         &:hover{
-            background: linear-gradient(to right ,  #EB6541 , #e6a938 , #EB6541);
+            background: linear-gradient(to left , #e8f9cc  ,#a5ea87);
         }
 
 
@@ -44,7 +44,7 @@
             font-size: 0.7rem; 
         }
         .allOrdDetailes{
-            background-image: linear-gradient(to bottom , #F6BA6F 1% ,#f4cb99 10% ,#E5F9DB );
+            background-image: linear-gradient(to bottom ,#e8f9cc  ,#a5ea87 );
         }
     }
 
@@ -113,19 +113,19 @@
     @include transition(0.3s , all );
     &:hover{
         background-color: #276259;
-        color: #ccb889;
+        color: white;
     }
 }
 .Sliders{
     cursor: pointer;
 }
 .signUpForm{
-    background: linear-gradient(to left , #F6BA6F 1% ,#f4cb99 10% ,#E5F9DB );
+    background: linear-gradient(to left , #e8f9cc  ,#a5ea87 );
     button{
         background-color: #398378;
-        color: #efdbae;
+        color: white;
         &:hover{
-        background-color: #c3b38d;
+        background-color:  #e8f9cc;
         color: #398378;
         }
     }
@@ -134,24 +134,24 @@
     color: #398378;
 }
 .detBtn{
-    background-color:  #f4cb99;
+    background-color:  #e8f9cc;
     color: #398378;
     outline: 0px;
     border: 0px;
     font-size: 0.8rem;
     @include transition(0.5s , all );
     &:hover{
-        background-color: #b74829;
-        color: white;
+        background-color:  #398378;
+        color:  #e8f9cc;
     }
 }
 .cartRemoveBtn{
     color: #398378;
-    background-color: #F7E1AE;
+    background-color:  #e8f9cc;
     @include transition(0.5s , all );
     &:hover{
-        color: #398378;
-        background-color: #d4b161;
+        color: #e8f9cc;
+        background-color:  #398378;
     }
 }
 .product{
@@ -165,7 +165,7 @@
         font-weight: bolder;
     }
     .rating{
-        background-color: #ccb889;
+        background-color:  #e8f9cc;
         width: 30px;
         height: 30px;
     }
@@ -186,14 +186,14 @@
 }
 
 .proBtn2{
-    background: linear-gradient(to right , #e6a938 , #EB6541 , #e6a938);
-    color: #F7E1AE;
+    background: linear-gradient(to right ,#e8f9cc  ,#a5ea87);
+    color: white;
     border: 0px;
     padding: 5px;
     font-size: 1.2rem;
     @include transition(0.3s , all );
     &:hover{
-        background: linear-gradient(to right ,  #ba401e , #8d651b , #be3f1c);
+        background: linear-gradient(to right , #b3cf85  ,#8cd76c);
         color: white;
     }
 }
@@ -208,7 +208,7 @@
         color:#617A55;
     }
     span{
-        color: #b6913d;
+        color: #79d45b;
     }
 }
 .ProTitle {
@@ -219,7 +219,7 @@
     font-weight: bolder; 
 }
 .brandBox{
-    background-color:  #f4cb99;
+    background-color:   #e8f9cc;
     color: #398378;
     @include transition( 0.3s, all);
     &:hover{
@@ -230,13 +230,13 @@
 
 .proBtn3{
     background-color:white;
-    color: #F0976C;
+    color: #398378;
     border: 0px;
     padding: 5px;
     font-size: 1.2rem;
     @include transition(0.3s , all );
     &:hover{
-        color: #EB6541;
+        color: #e8f9cc;
     }
 }
 nav ul li a{
@@ -275,14 +275,14 @@ nav ul li a{
         } 
     }
     button{
-        background: linear-gradient(to right, #ba401e, #c38e2b, #be3f1c);
-            color: #efe1bf;
+        background: linear-gradient(to right,#e8f9cc  ,#a5ea87);
+            color: white;
             border: 0px;
             padding: 5px;
             font-size: 1.2rem;
             // width: fit-content;
             &:hover{
-                background: linear-gradient(to left, #c38e2b, #be3f1c, #ba401e);
+                background: linear-gradient(to right,#a5ea87 , #e8f9cc  );
             }
     }
 }
@@ -295,7 +295,7 @@ nav ul li a{
 
 
 nav{
-    background-image: linear-gradient(to left ,#EB6440   ,#ff9a80 );
+    background-color: #40c9b4;
 }
 
 .myOrder{
@@ -445,7 +445,7 @@ nav{
 
 
 footer{
-    background-image: linear-gradient(to right,#451406 ,  #852409);
+    background-image: linear-gradient(to left, #398378 25% ,  #0b3932  );
     .footerUl{
         list-style: none;
         width: fit-content;
@@ -496,8 +496,8 @@ footer{
     width: 20px;
 }
 ::-webkit-scrollbar-track{
-    background: #c3b38d;
+    background: aliceblue  ;
 }
 ::-webkit-scrollbar-thumb{
-    background: #ba401e;
+    background: #398378;
 }
