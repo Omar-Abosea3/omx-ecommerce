@@ -143,7 +143,7 @@ export default function Public() {
               </div>
               
               <div className='row px-3 gx-1 gy-1'>
-                  <h3 className='mb-3'><i className="bi bi-collection"></i> All Categories</h3>
+                  <h3 className='mb-3 titleFontSize'><i className="bi bi-collection"></i> All Categories</h3>
                   <Slider {...settings}>
                       {allCategories.map((item) => <div key={item._id} className='col-lg-3 col-md-4 col-6'>
                           <Link to={`/${item._id}`} className='text-decoration-none link-light'>
@@ -161,7 +161,7 @@ export default function Public() {
 
               <div className="row gx-2 px-5 my-5 gy-2">
                 <div className='text-dark mb-3 d-flex justify-content-between align-items-center'>
-                    <h3><i className="bi bi-star"></i> Popular Products</h3>
+                    <h3 className='titleFontSize'><i className="bi bi-star"></i> Popular Products</h3>
                     <Link to={'/home'} className='text-decoration-none link-light'><button style={{backgroundColor:'#40C9B4'}} className='btn'>See All <i className='bi bi-arrow-right'></i></button></Link>
                 </div>
                 <Slider {...settings}>
@@ -187,7 +187,7 @@ export default function Public() {
 
               <div className='row px-3 gx-1 gy-1'>
                 <div className='text-dark mb-3 d-flex justify-content-between align-items-center'>
-                        <h3><i className="bi text-center w-100 bi-shop-window position-relative"></i>  Brands</h3>
+                        <h3 className='titleFontSize'><i className="bi text-center w-100 bi-shop-window position-relative"></i>  Brands</h3>
                         <Link to={'/brands'} className='text-decoration-none link-light'><button style={{backgroundColor:'#40C9B4'}} className='btn'>See All <i className='bi bi-arrow-right'></i></button></Link>
                     </div>
                   <Slider {...settings}>

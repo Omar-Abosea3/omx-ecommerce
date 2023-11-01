@@ -71,7 +71,6 @@ export default function Home() {
         if($('.filtersContainerparent').hasClass('end-100')){
             console.log(1);
             $('#toggleAside').html('<i class="bi fs-3 bi-caret-left-fill"></i>');
-            // $('.filtersContainer').removeClass('end-100').addClass('start-0');
             $('.filtersContainerparent').animate({left:'0%'} , 2000);
             $('.filtersContainerparent').removeClass('end-100');
         }else{
@@ -160,7 +159,7 @@ export default function Home() {
                 <form className='px-2 w-100 mb-3'>
                     <div className='px-2'>
                         <label htmlFor="price" className='mb-2 filtersTitle'>Price</label>
-                        <div id='price' onClick={(e)=>{extractPriceAndSetFilters(e)}} className='d-flex w-100 justify-content-center align-items-center flex-wrap'>
+                        <div id='price' onClick={(e)=>{extractPriceAndSetFilters(e)}} className='d-flex w-100 filtersFontSize justify-content-center align-items-center flex-wrap'>
                             <label className='w-100 mb-2' htmlFor="price1"><input type="radio" id='price1' className='form-check-input me-1'  value={'between 0 and 1000'} name='price' />between 0 and 1000</label>
                             <label className='w-100 mb-2' htmlFor="price2"><input type="radio" id='price2' className='form-check-input me-1'  value={'between 1000 and 4000'} name='price' />between 1000 and 4000</label>
                             <label className='w-100 mb-2' htmlFor="price3"><input type="radio" id='price3' className='form-check-input me-1'  value={'between 4000 and 8000'} name='price' />between 4000 and 8000</label>
@@ -174,7 +173,7 @@ export default function Home() {
                 <form className='px-2 w-100 mb-3'>
                     <div className='px-2'>
                         <label htmlFor="brands" className='mb-2 filtersTitle'>Brands</label>
-                        <div id='brands' className='d-flex w-100 justify-content-center align-items-center flex-wrap'>
+                        <div id='brands' className='d-flex filtersFontSize w-100 justify-content-center align-items-center flex-wrap'>
                             {!Brand?'':<>
                                 {Brand.map((bra) => <label onClick={() => {getCustomBrand(bra._id)}} key={bra._id} className='w-100 mb-2' htmlFor={`filterBrand${bra._id}`}><input type="radio" id={`filterBrand${bra._id}`} className='form-check-input me-1'  value={bra._id} name='brand' />{bra.name}</label>) }
                             </>}
@@ -185,7 +184,7 @@ export default function Home() {
                 <form className='px-2 w-100 mb-3'>
                     <div className='px-2'>
                         <label htmlFor="categories" className='mb-2 filtersTitle'>categories</label>
-                        <div id='categories' className='d-flex w-100 justify-content-center align-items-center flex-wrap'>
+                        <div id='categories' className='d-flex filtersFontSize w-100 justify-content-center align-items-center flex-wrap'>
                             {!allCategories?'':<>
                                 {allCategories.map((Cat) => <label onClick={() => {getCustomCategory(Cat._id)}} key={Cat._id} className='w-100 mb-2' htmlFor={`filterCat${Cat._id}`}><input type="radio" id={`filterCat${Cat._id}`} className='form-check-input me-1'  value={Cat._id} name='Category' />{Cat.name}</label>) }
                             </>}

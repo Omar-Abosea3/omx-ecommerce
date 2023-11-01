@@ -312,41 +312,6 @@ nav ul li a {
   background: linear-gradient(to right, #a5ea87, #e8f9cc);
 }
 
-.slider1 {
-  background-image: url(../assets/1.jpg);
-  border-radius: 10px;
-}
-
-.slider2 {
-  background-image: url(../assets/2.jpg);
-  border-radius: 10px;
-}
-
-.slider3 {
-  background-image: url(../assets/3.jpg);
-  border-radius: 10px;
-}
-
-.slider4 {
-  background-image: url(../assets/4.jpg);
-  border-radius: 10px;
-}
-
-.slider5 {
-  background-image: url(../assets/5.jpg);
-  border-radius: 10px;
-}
-
-.slider6 {
-  background-image: url(../assets/6.jpg);
-  border-radius: 10px;
-}
-
-.slider7 {
-  background-image: url(../assets/7.jpg);
-  border-radius: 10px;
-}
-
 nav {
   background-color: rgb(255, 255, 255);
 }
@@ -577,4 +542,13 @@ footer .footerInfo h3 {
 
 #noProducts {
   z-index: 999;
+}
+
+@media screen and (max-width: 900px) {
+  .filtersFontSize label {
+    font-size: 12px !important;
+  }
+  .titleFontSize {
+    font-size: 16px !important;
+  }
 }/*# sourceMappingURL=style.css.map */

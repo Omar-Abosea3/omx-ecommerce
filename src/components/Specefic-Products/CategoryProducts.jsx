@@ -123,7 +123,7 @@ export default function CategoryProducts() {
         {SpecCategory == null || SubCategories == null? <LodingScrean /> : SpecCategory.length != 0?<> 
                 <div className='w-100 px-5 mt-5 pt-5'>
                     <div className='text-dark w-100 mb-3 mt-5 d-flex justify-content-between align-items-center'>
-                        <h3 className='mb-3'><i className="bi bi-collection"></i> All SubCategories</h3>
+                        <h3 className='mb-3 titleFontSize'><i className="bi bi-collection"></i> All SubCategories</h3>
                         <Link to={'/subcategories'} className='text-decoration-none link-light'><button style={{ backgroundColor: '#40C9B4' }} className='btn'>See All <i className='bi bi-arrow-right'></i></button></Link>
                     </div>
                     <Slider {...settings}>
@@ -142,7 +142,7 @@ export default function CategoryProducts() {
         <div className="container-fluid d-flex justify-content-center py-5">
             <div style={{ display: 'none', zIndex: '9999' , bottom:'2%' }} className="sucMsg p-3 mt-0 alert bg-black text-white position-fixed"><i className="fa-solid fa-circle-check"></i> Product Added Successfully .</div>
             <div className="row py-5 mt-5 gy-4">
-                <h2><i className="bi bi-border-all"></i> Category Products.</h2>
+                <h2 className='titleFontSize'><i className="bi bi-border-all"></i> Category Products.</h2>
                 {SpecCategory.map((pro, index) => <div id='homeTop' key={index} className="col-6  position-relative producInWideScreen text-white col-sm-4 col-md-3">
                         <div className="product position-relative overflow-hidden">
                             <Link to={`/product-detailes/${pro.id}`} className='text-decoration-none shadow-lg text-white'>
