@@ -125,7 +125,7 @@ export default function Cart() {
   
 
   const memo = useMemo(function(){
-    dispatch(getFavProductsData()); 
+    dispatch(getFavProductsData());
     if(!myCartItems){
       dispatch(getCartItemsData());
       $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100' src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100'); 
