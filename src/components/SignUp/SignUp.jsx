@@ -1,4 +1,4 @@
-import { Formik, useFormik } from 'formik';
+import {  useFormik } from 'formik';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import $ from 'jquery';
@@ -80,19 +80,19 @@ export default function SignUp() {
         <form onSubmit={myFormik.handleSubmit} className='col-12' >
           <div style={{ display: 'none' }} className="sucMsg text-center alert alert-success py-1">Success</div>
           <div style={{ display: 'none' }} className="errMsg text-center alert alert-danger py-1">Email already in use</div>
-          <label htmlFor="name">name</label>
+          <label className='mb-2' htmlFor="name">name</label>
           <input onBlur={myFormik.handleBlur} onChange={myFormik.handleChange} id='name' placeholder='Name' value={myFormik.values.name} className='form-control mb-3' type="text" />
-
           {myFormik.errors.name && myFormik.touched.name ? <div className="alert py-1 alert-warning">{myFormik.errors.name}</div> : ''}
-          <label htmlFor="email">email</label>
+          
+          <label className='mb-2' htmlFor="email">email</label>
           <input onBlur={myFormik.handleBlur} onChange={myFormik.handleChange} id='email' placeholder='Email' value={myFormik.values.email} className='form-control mb-3' type="email" />
           {myFormik.errors.email && myFormik.touched.email ? <div className="alert py-1 alert-warning">{myFormik.errors.email}</div> : ''}
 
-          <label htmlFor="phone">phone</label>
+          <label className='mb-2' htmlFor="phone">phone</label>
           <input id='phone' onBlur={myFormik.handleBlur} onChange={myFormik.handleChange} value={myFormik.values.phone} className='form-control mb-3' placeholder='phone' type="text" />
           {myFormik.errors.phone && myFormik.touched.phone ? <div className="alert py-1 alert-warning">{myFormik.errors.phone}</div> : ''}
 
-          <label htmlFor="password">password</label>
+          <label className='mb-2' htmlFor="password">password</label>
           <input onBlur={myFormik.handleBlur} onChange={myFormik.handleChange} id='password' placeholder='Password' value={myFormik.values.password} className='form-control mb-3' type="password" />
           {myFormik.errors.password && myFormik.touched.password ? <div className="alert py-1 alert-warning">{myFormik.errors.password}</div> : ''}
 

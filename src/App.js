@@ -13,7 +13,16 @@ import ProductDetailes from './components/ProductDetailes/ProductDetailes';
 import Payment from './components/Payment/Payment';
 import MyOrders from './components/getOrders/MyOrders';
 import $ from 'jquery';
-
+import Public from './components/Public/Public';
+import WishlistProducts from './components/WishlistProducts/WishlistProducts';
+import CategoryProducts from './components/Specefic-Products/CategoryProducts';
+import SubCategories from './components/SubCategories/SubCategories';
+import SubCategoryProducts from './components/Specefic-Products/SubCategoryProducts';
+import ForgetPassword from './components/ForgetPassword/ForgetPassword';
+import VerifyUser from './components/ForgetPassword/VerifyUser';
+import ResetPassword from './components/ResetPassword/ResetPassword';
+import Profile from './components/Profile/Profile';
+import { Online , Offline } from 'react-detect-offline';
 
 
 
@@ -29,6 +38,7 @@ export default function App() {
   
   function clearUserData(){
     localStorage.removeItem('tkn1');
+    localStorage.removeItem('userData');
     setcurUser(null);
   }
 
@@ -41,13 +51,13 @@ export default function App() {
   function ProtectedRoutes({children}){
 
     if(localStorage.getItem('tkn1') == null){
-      {setTimeout(() => {
-        $(".notLogin").fadeIn(500, function () {
+      setTimeout(() => {
+        $(".notLogin").slideDown(500, function () {
           setTimeout(() => {
-            $(".notLogin").fadeOut(500);
+            $(".notLogin").slideUp(500);
           }, 2000);
         });
-      }, 500)}
+      }, 500)
       return (
         <>
           <Navigate to="/login" />
@@ -65,8 +75,7 @@ export default function App() {
 
     if(localStorage.getItem('tkn1') != null){
       return <>
-      <Navigate to='/home'/>
-      
+        <Navigate to='/'/>
       </> 
     }else{
       return <>
@@ -79,9 +88,14 @@ export default function App() {
 
   const router = createHashRouter([
     {path:'',element:<Layout curUser={curUser} clearUserData={clearUserData} />,children:[
-      {path:'',element:<Home/>},
+      {path:'',element:<Public/>},
+      {path:'/:id',element:<CategoryProducts/>},
       {path:'home',element:<Home/>},
       {path:'brands',element:<Brands/>},
+      {path:'subcategories',element:<SubCategories/>},
+      {path:'subcategories/:id',element:<SubCategoryProducts/>},
+      {path:'wishlist' , element:<ProtectedRoutes><WishlistProducts/></ProtectedRoutes>},
+      {path:'profile' , element:<ProtectedRoutes><Profile clearUserData={clearUserData}/></ProtectedRoutes>},
       {path:'brands/:id',element:<BrandProducts/>},
       {path:'product-detailes/:id',element:<ProtectedRoutes><ProductDetailes/></ProtectedRoutes>},
       {path:'cart',element:<ProtectedRoutes><Cart/></ProtectedRoutes>},
@@ -89,13 +103,28 @@ export default function App() {
       {path:'allorders',element:<ProtectedRoutes><MyOrders curUser={curUser} /></ProtectedRoutes>},
       {path:'login',element:<ProtectedRoutes2><Login getUserData={getUserData}/></ProtectedRoutes2>},
       {path:'signup',element:<ProtectedRoutes2><SignUp/></ProtectedRoutes2>},
+      {path:'forgetpassword',element:<ProtectedRoutes2><ForgetPassword/></ProtectedRoutes2>},
+      {path:'forgetpassword/verifycode',element:<ProtectedRoutes2><VerifyUser/></ProtectedRoutes2>},
+      {path:'resetpassword',element:<ProtectedRoutes2><ResetPassword/></ProtectedRoutes2>},
       
       {path:'*',element:<div className='vh-100 d-flex py-5 my-5 justify-content-center align-items-center text-black'><img className='w-75' src={require('./assets/error 404.jpg')} alt='error'/>  </div>},
     ]}
   ])
 
   return <>
-      <RouterProvider router={router}/>
+      <Online>
+        <RouterProvider router={router}/>
+      </Online>
+
+      <Offline>
+        <div className='vh-100 d-flex justify-content-center align-items-center'>
+            <figure className='w-50 text-center'>
+               <img className='w-25 mb-3' src={require('./assets/Network-error.png')} alt='offline image'/>
+               <h3>your network is not stable</h3>
+            </figure>  
+        </div>
+      </Offline>
+      
   </>
 }
 

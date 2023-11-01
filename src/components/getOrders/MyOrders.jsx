@@ -6,15 +6,16 @@ import emptyOrder from '../../assets/EmptyPtoducts.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCartItemsData } from '../../Store/getLoggedCartItemsSlice';
 import { Helmet } from 'react-helmet';
+import { getFavProductsData } from '../../Store/getLoggedUserWishlist';
 
 export default function MyOrders({curUser}) {
 
     const [MyOrders, setMyOrders] = useState(null);
-
+    const dispatch = useDispatch()
     async function getMyOrders(){
         try {
             const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${curUser.id}`);
-           
+            dispatch(getFavProductsData());
             setMyOrders(data);
             console.log(data);
            
@@ -47,11 +48,11 @@ export default function MyOrders({curUser}) {
             </div>)}
           </div>
           <div className="w-100 allOrdDetailes producInWideScreen2 text-center d-flex flex-wrap">
-            <h3 className='w-100 p-2 text-dark rounded-2'>totalOrderPrice: <span style={{ color: '#EB6440' }} >{order.totalOrderPrice}</span></h3>
-            <h3 className='p-2 text-dark w-100 rounded-2'>paymentMethodType: <span style={{ color: '#EB6440' }} >{order.paymentMethodType}</span></h3>
-            <h3 className='p-2 text-dark w-100 rounded-2'>Name: <span style={{ color: '#EB6440' }} >{order.user.name}</span></h3>
-            <h3 className='p-2 text-dark w-100 rounded-2'>Phone: <span style={{ color: '#EB6440' }} >{order.user.phone}</span></h3>
-            {order.isPaid == true ? <h3 className=' w-100 text-dark p-2 rounded-2'>isPaid: <span style={{ color: '#66c9a5' }} >{String(order.isPaid)}</span></h3> : <h3 className='text-dark w-100 p-2 rounded-2'>isPaid: <span style={{ color: '#EB6440' }} >{String(order.isPaid)}</span></h3>}
+            <h3 className='w-100 p-2 rounded-2'>totalOrderPrice: <span>{order.totalOrderPrice}</span></h3>
+            <h3 className='p-2  w-100 rounded-2'>paymentMethodType: <span>{order.paymentMethodType}</span></h3>
+            <h3 className='p-2 w-100 rounded-2'>Name: <span>{order.user.name}</span></h3>
+            <h3 className='p-2 w-100 rounded-2'>Phone: <span>{order.user.phone}</span></h3>
+            {order.isPaid == true ? <h3 className=' w-100 p-2 rounded-2'>isPaid: <span style={{ color: 'black' }} >{String(order.isPaid)}</span></h3> : <h3 className='w-100 p-2 rounded-2'>isPaid: <span style={{ color: '#EB6440' }} >{String(order.isPaid)}</span></h3>}
           </div>
         </div>)}
       </div>

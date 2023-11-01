@@ -9,31 +9,28 @@
 
     
     .proBtn{
-        background: linear-gradient(to right , #e8f9cc  ,#a5ea87);
+        background-color: #33907C;
         color: white;
         border: 0px;
         padding: 5px;
         font-size: 1.2rem;
         @include transition(0.3s , all );
         &:hover{
-            background: linear-gradient(to right ,#a5ea87 ,  #e8f9cc);
-            color: white;
+            background-color: rgb(212, 212, 212);
+            color: #30ac9a;
         }
-  
     }
     .proBtn5{
-        background: linear-gradient(to right ,#e8f9cc  ,#a5ea87);
+        background-color: #33907C;
         color: white;
         border: 0px;
         padding: 5px;
         font-size: 1.2rem;
-        margin-bottom: -10px;
-        @include transition(0s , all );
+        @include transition(0.3s , all );
         &:hover{
-            background: linear-gradient(to left , #e8f9cc  ,#a5ea87);
+            background-color: rgb(212, 212, 212);
+            color: #30ac9a;
         }
-
-
     }
    
     .producInWideScreen2{
@@ -44,7 +41,11 @@
             font-size: 0.7rem; 
         }
         .allOrdDetailes{
-            background-image: linear-gradient(to bottom ,#e8f9cc  ,#a5ea87 );
+            background-image: #30AC9A;
+            color: white !important;
+            span{
+                color: rgb(255, 187, 61) ;
+            }
         }
     }
 
@@ -120,7 +121,9 @@
     cursor: pointer;
 }
 .signUpForm{
-    background: linear-gradient(to left , #e8f9cc  ,#a5ea87 );
+    background-color: white;
+    box-shadow: 0px 0px 15px 15px black;
+    margin: 100px 0px;
     button{
         background-color: #398378;
         color: white;
@@ -186,15 +189,15 @@
 }
 
 .proBtn2{
-    background: linear-gradient(to right ,#e8f9cc  ,#a5ea87);
+    background-color: #33907C;
     color: white;
     border: 0px;
     padding: 5px;
     font-size: 1.2rem;
     @include transition(0.3s , all );
     &:hover{
-        background: linear-gradient(to right , #b3cf85  ,#8cd76c);
-        color: white;
+         background-color: rgb(212, 212, 212);
+        color: #30ac9a;
     }
 }
 .clearBtn{
@@ -295,7 +298,7 @@ nav ul li a{
 
 
 nav{
-    background-color: #40c9b4;
+    background-color: rgb(255, 255, 255);
 }
 
 .myOrder{
@@ -303,6 +306,9 @@ nav{
     background-color: white;
 }
 
+.allOrdDetailes{
+    background-color: #30ac9a;
+}
 
 .productFontSize{
         h3,h4,h2{
@@ -328,7 +334,7 @@ nav{
     width: fit-content;
 }
 
-.login ,.notLogin{
+.login{
     width: fit-content;
 }
 
@@ -501,3 +507,55 @@ footer{
 ::-webkit-scrollbar-thumb{
     background: #398378;
 }
+
+.favBrandCounter{
+    width:25px;
+    height: 25px;
+    border-radius:50%;
+    background-color:#33907C;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .filtersContainerparent{
+    width: 30%;
+    height: 100vh;
+    background-color: whitesmoke;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    div i{
+        color: #30AC9A;
+    }
+    div:nth-child(1){
+        cursor: pointer;
+    }
+    .filtersContainer{
+        width: 100%;
+        height: 100vh;
+        background-color: whitesmoke;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar{
+            width: 10px;
+        }
+        .filtersTitle{
+            background-color: #33907C;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 5px;
+        }
+    }
+  }
+
+  #noProducts{
+    z-index: 999;
+  }
+

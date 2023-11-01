@@ -10,16 +10,48 @@ import { Helmet } from 'react-helmet';
 import { addToCartFunction } from '../../glopalFunctions/addToCartFun';
 import AddToWishlistBtn from '../Buttons/AddToWishlistBtn';
 import { getFavProductsData } from '../../Store/getLoggedUserWishlist';
+import Slider from 'react-slick';
 
-export default function BrandProducts() {
+export default function SubCategoryProducts() {
 
     const {id} = useParams();
-    const [SpecBrand, setSpecBrand] = useState(null);
-    const [PageTitle, setPageTitle] = useState('Brand');
+    const [SubCategories, setSubCategories] = useState(null);
+    const [PageTitle, setPageTitle] = useState('SubCategory');
     const [favIds, setfavIds] = useState([]);
     const wishlistProducts = useSelector((store) => store.getFavProductsSlice.wishlistProducts);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 2000,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows : true,
+        cssEase: 'ease',
+        useCSS:true,
+        pauseOnHover: true,
+        responsive:[{
+ 
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              infinite: true
+            }
+       
+          }, {
+       
+            breakpoint: 800,
+            settings: {
+              slidesToShow: 2,
+              infinite: true
+            }
+       
+          }],
+    };
 
     async function addingToCart(id){
         if(!localStorage.getItem('tkn1')){
@@ -29,32 +61,33 @@ export default function BrandProducts() {
             dispatch(getCartItemsData());
         }
     } 
-    
-    async function getOneBrand(){
+    async function getOneSubCategory(){
         try {
-            const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/brands/${id}`);
+            const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/subcategories/${id}`);
             console.log(data);
             setPageTitle(data.data.slug);
         } catch (error) {
             console.log(error);
         }
     }
-    async function getSpecBrand(){
+    async function getSpecSubCategory(){
         try {
-            let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products`,{
+            const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products`,{
                 params:{
-                    brand:id,
+                   "subcategory[in]":id,
                 }
             });
             dispatch(getFavProductsData());
-            getOneBrand();
-            setSpecBrand(data.data);
+            console.log(data);
+            getOneSubCategory()
+            setSubCategories(data.data);
         } catch (error) {
             console.log(error);
         }
     }
+
     useEffect(function(){
-        getSpecBrand();
+        getSpecSubCategory();
     },[]);
 
     const memo = useMemo(()=>{
@@ -71,12 +104,12 @@ export default function BrandProducts() {
     },[wishlistProducts])
     return <>
         <Helmet>
-            <title>BrandProducts</title>
+            <title>{PageTitle}</title>
         </Helmet>
-        {SpecBrand == null ? <LodingScrean /> : SpecBrand.length != 0 ? <div className="container-fluid d-flex justify-content-center py-5">
-        <div style={{ display: 'none', zIndex: '9999' , bottom:'2%' }} className="sucMsg p-3 mt-0 alert bg-black text-white position-fixed"><i className="fa-solid fa-circle-check"></i> Product Added Successfully .</div>
+        {SubCategories == null? <LodingScrean /> : SubCategories.length != 0? <div className="container-fluid d-flex justify-content-center py-5">
+            <div style={{ display: 'none', zIndex: '9999' , bottom:'2%' }} className="sucMsg p-3 mt-0 alert bg-black text-white position-fixed"><i className="fa-solid fa-circle-check"></i> Product Added Successfully .</div>
             <div className="row py-5 mt-5 gy-4">
-                {SpecBrand.map((pro, index) => <div id='homeTop' key={index} className="col-6  position-relative producInWideScreen text-white col-sm-4 col-md-3">
+                {SubCategories.map((pro, index) => <div id='homeTop' key={index} className="col-6  position-relative producInWideScreen text-white col-sm-4 col-md-3">
                         <div className="product position-relative overflow-hidden">
                             <Link to={`/product-detailes/${pro.id}`} className='text-decoration-none shadow-lg text-white'>
                                 <figure className='overflow-hidden'><img className='w-100 proImg' src={pro.imageCover} alt={pro.title} /></figure>
@@ -95,7 +128,7 @@ export default function BrandProducts() {
                         </div>
                     </div>)}
             </div>
-        </div> : <div className="vh-100 d-flex flex-wrap pt-5 text-center justify-content-center align-content-center"><img className='w-25' src={emptyOrder} alt="Empty Order" /> <h2 className='w-100'>This Brand Is Empty !</h2></div>}
+        </div> : <div className="vh-100 d-flex flex-wrap pt-5 text-center justify-content-center align-content-center"><img className='w-25' src={emptyOrder} alt="Empty Order" /> <h2 className='w-100'>This Category Is Empty !</h2></div>}
 
     </>
 }

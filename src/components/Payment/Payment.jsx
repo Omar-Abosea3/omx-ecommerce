@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import $ from 'jquery';
 import axios from 'axios';
@@ -9,17 +9,13 @@ import { Helmet } from 'react-helmet';
 
 
 export default function Payment() {
-  // const cartId = useSelector(function (store) {
-  //   return store.getCartItemSlice.cartId;
-  // })
-  const myNumCartItems = useSelector(function (store) {
-    return store.getCartItemSlice.cartItems;
-  })
+
   const myCartItems = useSelector(function (store) {
     return store.getCartItemSlice.CartProducts;
   })
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const orderInfo = {
     shippingAddress: {
@@ -45,7 +41,6 @@ export default function Payment() {
       });
       console.log(data);
       if (data.status == 'success') {
-        // dispatch(getCartItemsData());
         window.open(data.session.url);
 
         console.log(data);
@@ -92,7 +87,6 @@ export default function Payment() {
     }
   }
 
-  const dispatch = useDispatch();
   async function checkData() {
 
     if ((/^\D+$/).test(orderInfo.shippingAddress.details) != true && (/^01[0125][0-9]{8}$/).test(orderInfo.shippingAddress.phone) != true && (/^\D+$/).test(orderInfo.shippingAddress.city) != true) {
@@ -104,12 +98,12 @@ export default function Payment() {
       })
     } else {
       $('.infoBtn').html(`<i class='fa fa-spinner fa-spin text-white'></i>`);
+      dispatch(getCartItemsData());
       await puyProducts(orderInfo);
     }
   }
 
   async function checkData2() {
-
     if ((/^\D+$/).test(orderInfo.shippingAddress.details) != true && (/^01[0125][0-9]{8}$/).test(orderInfo.shippingAddress.phone) != true && (/^\D+$/).test(orderInfo.shippingAddress.city) != true) {
       $('.errMsg').fadeIn(1000, function () {
         $('.infoBtn2').html('Order now  <i class="bi bi-bag-check"></i>');
@@ -119,19 +113,22 @@ export default function Payment() {
       })
     } else {
       $('.infoBtn2').html(`<i class='fa fa-spinner fa-spin text-white'></i>`);
+      dispatch(getCartItemsData());
       await puyProductsCash(orderInfo);
     }
   }
-  useEffect(function () {
-    dispatch(getCartItemsData());
-  }, [cartId, myNumCartItems, myCartItems])
+  const memo = useMemo(function () {
+    if(!myCartItems){
+      dispatch(getCartItemsData());
+    }
+  }, [myCartItems])
 
   return <>
     <Helmet>
       <title>Payment</title>
     </Helmet>
 
-    {cartId != 0 ? <div className="vh-100 w-100 d-flex justify-content-center align-items-center">
+    {cartId != 0 ? <div className="w-100 d-flex py-5 my-5 justify-content-center align-items-center">
       <div className="signUpForm producInWideScreen bg-light w-75 mt-5 p-5 shadow-lg">
         <div className="w-100 mb-3 text-center">
           <img className='w-50' src={require('../../assets/omx-ecommerce-low-resolution-logo-color-on-transparent-background.png')} alt="Our Logo" />

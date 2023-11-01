@@ -1,16 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import getCartSlice from './getCartItemsSlice';
-import getCartItemSlice from './getLoggedCartItemsSlice';
-import removeCartItemsSlice from './RemoveCartItemSlice';
+
+import getCartItemSlice from './getLoggedCartItemsSlice.js';
+import getFavProductsSlice from './getLoggedUserWishlist.js';
 
 
 
 
 export const myStore = configureStore({
     reducer:{
-        getCartSlice:getCartSlice,
-        getCartItemSlice:getCartItemSlice,
-        removeCartItemsSlice:removeCartItemsSlice,
+        getCartItemSlice,
+        getFavProductsSlice,
     },
 });

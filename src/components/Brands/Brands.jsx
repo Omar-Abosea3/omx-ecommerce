@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import LodingScrean from '../loadingScreen/LodingScrean';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { getCartItemsData } from '../../Store/getLoggedCartItemsSlice';
 import { Helmet } from 'react-helmet';
 

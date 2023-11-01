@@ -1,20 +1,25 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useMemo, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import LodingScrean from '../loadingScreen/LodingScrean';
 import Slider from "react-slick";
 
 import $ from 'jquery';
-import { getCartItems } from '../../Store/getCartItemsSlice';
 import { getCartItemsData } from '../../Store/getLoggedCartItemsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { addToCartFunction } from '../../glopalFunctions/addToCartFun';
+import AddToWishlistBtn from '../Buttons/AddToWishlistBtn';
+import { getFavProductsData } from '../../Store/getLoggedUserWishlist';
 
 export default function ProductDetailes() {
 
     const {id} = useParams();
-
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [Specproduct, setSpecProduct] = useState(null);
+    const [favIds, setfavIds] = useState([]);
+    const wishlistProducts = useSelector((store) => store.getFavProductsSlice.wishlistProducts);
 
     const settings = {
         dots: true,
@@ -27,24 +32,19 @@ export default function ProductDetailes() {
         arrows : false,
       };
 
-      const getCartSlice = useSelector(function(store){
-        return store.getCartSlice;
-    });
-
-      async function addToCartCheck(id) {
-        if (dispatch(getCartItems(id)) === true) {
+    async function addingToCart(id){
+        if(!localStorage.getItem('tkn1')){
+            navigate('/login');
+        }else{
+            await addToCartFunction(id);
             dispatch(getCartItemsData());
-        } else {
-            console.log('sorry');
         }
-    }
+    } 
    
-
-
-    const [Specproduct, setSpecProduct] = useState(null);
     async function getSpecProduct(){
         try {
             let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
+            dispatch(getFavProductsData());
             setSpecProduct(data.data);
             console.log(Specproduct);
         } catch (error) {
@@ -52,22 +52,33 @@ export default function ProductDetailes() {
         }
     }
 
-    useEffect(function () {
-        getSpecProduct();
-        if (dispatch(getCartItemsData()) != false) {
-            console.log(getCartSlice.cartItems);
+    const memo = useMemo(()=>{
+        if(!Specproduct){
+            getSpecProduct();
         }
-    }, [getCartSlice.cartItems])
+    },[Specproduct])
+
+    const memo2 = useMemo(()=>{
+        const wishProductIds = [];
+        if(!wishlistProducts){
+            dispatch(getFavProductsData());
+            setfavIds(wishProductIds);
+        }else{
+            wishlistProducts.map(pro => wishProductIds.push(pro.id));
+            if(wishProductIds.length != 0){
+                setfavIds(wishProductIds);
+            }
+        }
+    },[wishlistProducts])
 
     return <>
         {Specproduct == null ? <LodingScrean /> : <>
             <Helmet>
                 <title>{Specproduct.title}</title>
             </Helmet>
-            {console.log(Specproduct)}
-            <div className="container productFontSize2 py-5">
-                <div className="row justify-content-center align-items-start py-5 gy-5">
-                    <div style={{ display: 'none', zIndex: '9999' }} className="sucMsg p-3 mt-0 alert alert-light position-fixed  top-0"><i className="fa-solid fa-circle-check"></i> Product Added Successfully .</div>
+            <div className="container mt-5 productFontSize2 py-5">
+                <div className="row mt-3 justify-content-center align-items-start py-5 gy-5">
+                    <div style={{ display: 'none', zIndex: '9999' , bottom:'2%' }} className="sucMsg p-3 mt-0 alert bg-black text-white position-fixed"><i className="fa-solid fa-circle-check"></i> Product Added Successfully .</div>
                     <div className="col-12 col-sm-12 col-md-12 col-lg-4">
                         <Slider className='p-2 '  {...settings}>
                             {Specproduct.images.map((photo, index) => <div key={index} className='rounded-2 overflow-hidden'>
@@ -87,11 +98,12 @@ export default function ProductDetailes() {
                                 <h3 className='mb-4'>Sold: <span className='fw-light'>{Specproduct.sold}</span> </h3>
                                 <h3 className='mb-4'>Available-Quantity: <span className='fw-light'>{Specproduct.quantity}</span> </h3>
                                 {Specproduct.priceAfterDiscount ? <h3 className='mb-4'>price: <span className='fw-light text-decoration-line-through text-danger'>{Specproduct.price}</span>  <span className='fw-light'>{Specproduct.priceAfterDiscount}</span> </h3> : <h3 className='mb-4'>price: <span className='fw-light'>{Specproduct.price}</span> </h3>}
+                                {favIds.includes(Specproduct.id)?<AddToWishlistBtn id={Specproduct.id} classes={'bi text-danger bi-heart-fill fs-4 px-2'}/>:<AddToWishlistBtn id={Specproduct.id} classes={'bi bi-heart fs-4 px-2'}/>}
                             </div>
 
                         </div>
                     </div>
-                    <div className="px-2"><button onClick={function () { addToCartCheck(Specproduct.id) }} id={`addBtn1${Specproduct.id}`} className='btn proBtn2 col-12'>Add To Cart <i className="bi bi-bag-plus-fill"></i></button></div>
+                    <div className="px-2"><button onClick={function () { addingToCart(Specproduct.id) }} id={`addBtn1${Specproduct.id}`} className='btn proBtn2 col-12'>Add To Cart <i className="bi bi-bag-plus-fill"></i></button></div>
                 </div>
             </div>
         </>}

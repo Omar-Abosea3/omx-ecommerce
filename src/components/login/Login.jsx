@@ -9,7 +9,7 @@ export default function Login({ getUserData }) {
 
   function afterLogin() {
     getUserData();
-    navigate('/home');
+    navigate('/');
   }
   const loginUser = {
     "email": "",
@@ -24,6 +24,8 @@ export default function Login({ getUserData }) {
     try {
       const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, nUser);
       if (data.message == 'success') {
+        console.log(data);
+        localStorage.setItem('userData' , JSON.stringify({email:data.user.email , name:data.user.name , role:data.user.role}));
         localStorage.setItem('tkn1', data.token);
         setTimeout(() => {
           $('.loginBtn').html('Login');
@@ -41,14 +43,23 @@ export default function Login({ getUserData }) {
       })
     }
   }
-  const formik = useFormik({
+  const myFormik = useFormik({
     initialValues: loginUser,
 
     onSubmit: function (values) {
       console.log(values);
       sendNewUser(values);
     },
-
+    validate: function (values) {
+      let errors = {};
+      if (values.email.includes('@') == false || values.email.includes('.com') == false) {
+        errors.email = 'email not valid';
+      }
+      if (values.password.length < 3 || values.password.length > 15) {
+        errors.password = 'password must be more than 3 and less than 15';
+      }
+      return errors;
+    }
   })
 
   return <>
@@ -56,24 +67,26 @@ export default function Login({ getUserData }) {
       <title>Login</title>
     </Helmet>
     <div className="container py-5 my-5 d-flex justify-content-center align-items-center">
-    <div style={{display:'none',zIndex:'999999'}} className="notLogin mt-0 p-3 alert bg-dark text-white px-5 position-fixed top-0"><i className="fa-solid fa-close"></i> you Must Logged in first !!</div>
       <div className="signUpForm bg-light w-75 producInWideScreen mt-5 p-5 shadow-lg">
         <div className="w-100 mb-3 text-center">
           <img className='w-50' src={require('../../assets/omx-ecommerce-low-resolution-logo-color-on-transparent-background.png')} alt="Our Logo" />
         </div>
-        <form className='px-1 col-12 ' onSubmit={formik.handleSubmit}>
+        <form className='px-1 col-12 ' onSubmit={myFormik.handleSubmit}>
           <div style={{ display: 'none' }} className="errMsg mb-3 text-center alert alert-danger py-1">Email or Password is not correct.</div>
           <div className="w-100">
-            <label className='mb-2' htmlFor="email">email</label>
-            <input id='email' onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.email} className='form-control' placeholder='email' type="email" />
-            <label className='mt-4 mb-2' htmlFor="password">password</label>
-            <input id='password' onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.password} className='form-control' placeholder='password' type="password" />
+          <label className='mb-2' htmlFor="email">email</label>
+          <input onBlur={myFormik.handleBlur} onChange={myFormik.handleChange} id='email' placeholder='Email' value={myFormik.values.email} className='form-control mb-3' type="email" />
+          {myFormik.errors.email && myFormik.touched.email ? <div className="alert py-1 alert-warning">{myFormik.errors.email}</div> : ''}
+
+          <label className='mb-2' htmlFor="password">password</label>
+          <input onBlur={myFormik.handleBlur} onChange={myFormik.handleChange} id='password' placeholder='Password' value={myFormik.values.password} className='form-control mb-3' type="password" />
+          {myFormik.errors.password && myFormik.touched.password ? <div className="alert py-1 alert-warning">{myFormik.errors.password}</div> : ''}
           </div>
 
           <button onClick={loadingImog} type='submit' className='btn loginBtn w-100 mt-4'>Login</button>
           <hr/>
           <h6 className='text-center'>Not a member yet? <Link className="text-decoration-none" to={"/signup"}>Create Account</Link></h6>
-
+          <h6 className='text-center'>or rou are? <Link className="text-decoration-none" to={"/forgetpassword"}>forget password</Link></h6>
         </form>
 
         <div className="col-12 d-flex justify-content-center align-items-center">

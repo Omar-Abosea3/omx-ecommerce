@@ -1,14 +1,14 @@
-import React, { useEffect, useLayoutEffect, useState} from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useState} from 'react';
 import LodingScrean from '../loadingScreen/LodingScrean';
 import emptycart from '../../assets/your-cart-is-empty.png';
 
 import $ from 'jquery';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCart, getCartItemsData } from '../../Store/getLoggedCartItemsSlice';
-import { removeCartItems } from '../../Store/RemoveCartItemSlice';
+import { getCartItemsData } from '../../Store/getLoggedCartItemsSlice';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { getFavProductsData } from '../../Store/getLoggedUserWishlist';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -64,14 +64,43 @@ export default function Cart() {
       $('.quantityNotEnough').fadeOut(500);
     } else if (product2.count == 1) {
       $(`#loadingIcon${id}`).fadeOut(300);
-      dispatch(removeCartItems(id))
+      removeFromCart(id);
     } else if ( await updateCounterInCartItem(id, counter) == true) {
       dispatch(getCartItemsData());
     }
 
   }
 
-
+    async function removeFromCart(id){
+      $(`#removeBtn${id}`).html(`<i  class='fa fa-spinner fa-spin'></i>`);
+      $('#imPortantLayer').removeClass('d-none');
+      try {
+          const {data} = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,{
+            headers: {
+              token: localStorage.getItem('tkn1'),
+            }
+          });
+          if (data.status === "success") {
+            dispatch(getCartItemsData(id));
+            setTimeout(() => {
+              $('#imPortantLayer').addClass('d-none');
+            }, 1500);
+            if(myCartItems.length == 1 || !myCartItems.length){
+              navigate('/home')
+            }
+            $('.RemoveMsg').slideDown(500,function(){
+              setTimeout(() => {
+                $('.RemoveMsg').slideUp(500);
+              }, 1500);
+            })
+          }
+        } catch (error) {
+          $('#imPortantLayer').addClass('d-none');
+          $(`#removeBtn${id}`).html(`Remove Product <i class="bi bi-cart-dash-fill"></i>`);
+          console.log(error);
+        }
+          
+  }
     async function clearCart(){
       $('#clearBtn').html(`<i  class='fa fa-spinner fa-spin'></i>`);
       try {
@@ -94,18 +123,15 @@ export default function Cart() {
       }
     }
   
-  async function checkCartItems(id){
-    if(dispatch(removeCartItems(id)) == true ){
-      dispatch(getCartItemsData());
-    }
-  }
 
-  useLayoutEffect(function(){
-    dispatch(getCartItemsData());  
-    if(myCartItems != null && myCartItems.length == 0){
-      $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100' src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100');
+  const memo = useMemo(function(){
+    dispatch(getFavProductsData()); 
+    if(!myCartItems){
+      dispatch(getCartItemsData());
+      $('#emptyCart').html(`<div class="emptyCartMsg pt-5 justify-content-center align-items-center"><img class='w-100' src='${emptycart}' alt="Empty Cart" /></div>`).addClass('vh-100'); 
     }
-},[myCartItems,myNumCartItems,myTotalCartPrice])
+    console.log(myCartItems);
+},[myCartItems])
 
 
 
@@ -115,7 +141,7 @@ export default function Cart() {
     </Helmet>
     <div id='emptyCart' className='d-flex flex-wrap justify-content-center align-items-center'>
       {myCartItems == null ? <LodingScrean /> : <>
-        <div className="container d-flex productFontSize justify-content-center py-5">
+        <div className="container d-flex productFontSize my-5 justify-content-center py-5">
           <div style={{ display: 'none', zIndex: '9999' }} className="sucMsg mt-0 p-3 alert bg-dark text-white position-fixed top-0"><i className="fa-solid fa-circle-check"></i> Product Removed From Cart Successfully .</div>
           <div className="row cartRow py-5 ">
             <div className=' d-flex justify-content-between align-items-center mb-3'>
@@ -133,7 +159,7 @@ export default function Cart() {
                   <h3 className='w-100 mb-3'>Price-Per-One: <span className='fw-light'>{Product.price}</span></h3>
                   <h3 className='w-100 mb-3'>Total-Price: <span className='fw-light'>{Product.count * Product.price}</span></h3>
                   <h3 style={{ display: 'none' }} className='quantityNotEnough w-100 text-danger'>This Is All Quantity For This !</h3>
-                  <button id={`removeBtn${Product.product.id}`} onClick={function () { checkCartItems(Product.product.id) }} className='btn cartRemoveBtn'>Remove Product <i className="bi bi-cart-dash-fill"></i></button>
+                  <button id={`removeBtn${Product.product._id}`} onClick={function () { removeFromCart(Product.product._id) }} className='btn cartRemoveBtn'>Remove Product <i className="bi bi-cart-dash-fill"></i></button>
                 </figcaption>
               </figure>
             </div><hr /></section>)}
