@@ -16,6 +16,7 @@ export default function MyOrders({curUser}) {
         try {
             const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${curUser.id}`);
             dispatch(getFavProductsData());
+            dispatch(getCartItemsData());
             setMyOrders(data);
             console.log(data);
            
