@@ -39,7 +39,6 @@ export default function Profile({clearUserData}) {
 
     function closeUpdateUserLayer2(){
         $('.updateLayer2').fadeOut(500);
-        clearUserData();
     }
     async function updateUserData(myData){
         try {
@@ -84,8 +83,11 @@ export default function Profile({clearUserData}) {
           $('#updatePasswordBtn').html(`Change Now`);
           $('#sucMsg2').fadeIn(500,function(){
             setTimeout(() => {
-                $('#sucMsg2').fadeOut(500);
-                closeUpdateUserLayer2();
+                $('#sucMsg2').fadeOut(500,function(){
+                  closeUpdateUserLayer2();
+                  clearUserData();
+                });
+                
             }, 1500);
           });
             setuserData(JSON.parse(localStorage.getItem('userData')));
