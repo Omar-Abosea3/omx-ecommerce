@@ -80,7 +80,7 @@ export default function ResetPassword() {
           {myFormik.errors.email && myFormik.touched.email ? <div className="alert py-1 alert-warning">{myFormik.errors.email}</div> : ''}
 
           <label htmlFor="newPassword" className='mb-2'>New Password</label>
-          <input onBlur={myFormik.handleBlur} onChange={myFormik.handleChange} id='newPassword' placeholder='New Password' value={myFormik.values.newPassword} className='form-control mb-3' type="newPassword" />
+          <input onBlur={myFormik.handleBlur} onChange={myFormik.handleChange} id='newPassword' placeholder='New Password' value={myFormik.values.newPassword} className='form-control mb-3' type="password" />
           {myFormik.errors.newPassword && myFormik.touched.newPassword ? <div className="alert py-1 alert-warning">{myFormik.errors.newPassword}</div> : ''}
         <button id='reseBtn' onClick={loadingImog} type='submit' className='btn w-100'>Reset Password</button>
         <hr/>
