@@ -14,7 +14,6 @@ export default function Home() {
     const [product, setProduct] = useState(null);
     const [favIds, setfavIds] = useState([]);
     const [filters, setFilters] = useState({});
-    const [Brand, setBrand] = useState(null);
     const [allCategories, setallCategories] = useState(null);
 
     const wishlistProducts = useSelector((store) => store.getFavProductsSlice.wishlistProducts);
@@ -39,22 +38,11 @@ export default function Home() {
             dispatch(getCartItemsData());
             dispatch(getFavProductsData());
             console.log(data);
-            getBrand();
             getAllCategories();
             setProduct(data);
         } catch (error) {
             console.log(error);
         }
-    }
-
-    async function getBrand() {
-      try {
-        let { data } = await axios.get('https://ecommerce.routemisr.com/api/v1/brands');
-        setBrand(data.data);
-        console.log(Brand);
-      } catch (error) {
-        console.log(error);
-      }
     }
 
     async function getAllCategories(){
@@ -109,11 +97,6 @@ export default function Home() {
 
     }
 
-    function getCustomBrand(id){
-        const newFilters = { ...filters };
-        newFilters['brand'] = id;
-        setFilters(newFilters);
-    }
 
     function getCustomCategory(id){
         const newFilters = { ...filters };
@@ -170,16 +153,7 @@ export default function Home() {
                     </div>
                 </form>
 
-                <form className='px-2 w-100 mb-3'>
-                    <div className='px-2'>
-                        <label htmlFor="brands" className='mb-2 filtersTitle'>Brands</label>
-                        <div id='brands' className='d-flex filtersFontSize w-100 justify-content-center align-items-center flex-wrap'>
-                            {!Brand?'':<>
-                                {Brand.map((bra) => <label onClick={() => {getCustomBrand(bra._id)}} key={bra._id} className='w-100 mb-2' htmlFor={`filterBrand${bra._id}`}><input type="radio" id={`filterBrand${bra._id}`} className='form-check-input me-1'  value={bra._id} name='brand' />{bra.name}</label>) }
-                            </>}
-                        </div>
-                    </div>
-                </form>
+
 
                 <form className='px-2 w-100 mb-3'>
                     <div className='px-2'>
@@ -204,7 +178,7 @@ export default function Home() {
                                 <Link to={`/product-detailes/${pro.id}`} className='text-decoration-none shadow-lg text-white'>
                                     <figure className='overflow-hidden'><img className='w-100 proImg' src={pro.imageCover} alt={pro.title} /></figure>
                                     <figcaption className='ps-2 py-2'>
-                                        <img width={'80px'} className='mb-2' src={pro.brand.image} alt={pro.brand.image} />
+                                        <img width={'80px'} className='mb-2' src={pro.brand?.image} alt={pro.brand?.image} />
                                         <h2 className='ProTitle'>{pro.title.slice(0, pro.title.indexOf(' ', 10))}</h2>
                                         <h4>{pro.subcategory[0].name}</h4>
                                         <h4><i className="bi bi-star-fill text-warning"></i> {pro.ratingsAverage}</h4>

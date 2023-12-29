@@ -148,7 +148,7 @@ export default function CategoryProducts() {
                             <Link to={`/product-detailes/${pro.id}`} className='text-decoration-none shadow-lg text-white'>
                                 <figure className='overflow-hidden'><img className='w-100 proImg' src={pro.imageCover} alt={pro.title} /></figure>
                                 <figcaption className='ps-2 py-2'>
-                                    <img width={'80px'} className='mb-2' src={pro.brand.image} alt={pro.brand.image} />
+                                    <img width={'80px'} className='mb-2' src={pro.brand?.image} alt={pro.brand?.name} />
                                     <h2 className='ProTitle'>{pro.title.slice(0, pro.title.indexOf(' ', 10))}</h2>
                                     <h4>{pro.subcategory[0].name}</h4>
                                     <h4><i className="bi bi-star-fill text-warning"></i> {pro.ratingsAverage}</h4>

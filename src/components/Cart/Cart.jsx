@@ -153,7 +153,7 @@ export default function Cart() {
               <figure className="cart-products shadow-lg d-flex">
                 <img className='w-25' src={Product.product.imageCover} alt={Product.product.title} />
                 <figcaption className='d-flex ps-3 pb-3 w-75 align-content-start flex-wrap'>
-                  <div className='w-100'><img className='w-25' src={Product.product.brand.image} alt={Product.product.brand.name} /></div>
+                  <div className='w-100'><img className='w-25' src={Product.product.brand?.image} alt={Product.product.brand?.name} /></div>
                   <h3 className='w-100 mb-3 ProTitle'>{Product.product.title.slice(0, Product.product.title.indexOf(' ', 10))}</h3>
                   <h3 className='w-100 mb-3'>Count: <span className='fw-light'>{Product.count}</span> <button onClick={function () { checkQuantity2(Product.product.id, Product.count - 1, Product) }} className='proBtn3'><i className="bi bi-dash-circle-fill"></i></button> <button onClick={function () { checkQuantity(Product.product.id, Product.count + 1, Product) }} className='proBtn3'><i className="bi bi-plus-circle-fill"></i></button> <i id={`loadingIcon${Product.product.id}`} style={{ display: 'none' }} className='fa fa-spinner fa-spin'></i> </h3>
                   <h3 className='w-100 mb-3'>Price-Per-One: <span className='fw-light'>{Product.price}</span></h3>

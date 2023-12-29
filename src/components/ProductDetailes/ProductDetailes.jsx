@@ -92,7 +92,7 @@ export default function ProductDetailes() {
 
                         <div className='d-flex justify-content-between align-items-start'>
                             <div className='w-75'>
-                                <h3 className='mb-4'>Brand: <span className='fw-light'>{Specproduct.brand.name}</span></h3>
+                                <h3 className='mb-4'>Brand: <span className='fw-light'>{Specproduct.brand?.name}</span></h3>
                                 <h3 className='mb-4'>category: <span className='fw-light'>{Specproduct.subcategory[0].name}</span></h3>
                                 <h3 className='mb-4'>Rate: <span className='fw-light'>{Specproduct.ratingsAverage}</span> </h3>
                                 <h3 className='mb-4'>Sold: <span className='fw-light'>{Specproduct.sold}</span> </h3>
